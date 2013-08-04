@@ -1,4 +1,8 @@
-golang-email-tracker
-====================
+Email Tracker!
+===============
 
-Google Go based email tracking web application, You can get to know when your recipient has opened your email.
+Are you curious ? Whether your mail got read or left unread ?
+Our system will let you know whenever your recipient open it!
+Additionally get to know where was he from :)
+
+Try it yourself - http://porchoni.appspot.com/
