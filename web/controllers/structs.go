@@ -31,7 +31,7 @@ type ActionResponse struct {
 	RenderText  string
 	Code        int
 	Notice	    string
-	Layout      bool
+	NoLayout      bool
 	ContentType string
 }
 

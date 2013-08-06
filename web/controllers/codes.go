@@ -22,7 +22,7 @@ func (c *AppController) CodesRoot(w http.ResponseWriter, r *http.Request, sessio
 		}
 	} else {
 		return &ActionResponse{
-			Layout: false,
+			NoLayout: true,
 			Render: "views/codes/angular_index.html",
 			Context: &DataContext{
 				LoggedIn: true,

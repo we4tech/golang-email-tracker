@@ -21,7 +21,7 @@ func (c *AppController) Signup(w http.ResponseWriter, r *http.Request) {
 
 	ar := &ActionResponse{
 		Render: "views/users/signup.html",
-		Context: &DataContext {Err: r.FormValue("err"), User: user},
+		Context: &DataContext {Err: r.FormValue("err"), User: user, Notice: c.GetNotice(session)},
 	}
 	session.Save(r, w)
 	ar.Perform(w, r)

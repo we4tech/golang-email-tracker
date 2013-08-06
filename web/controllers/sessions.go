@@ -21,7 +21,9 @@ func (c *AppController) CreateSession(w http.ResponseWriter, r *http.Request) {
 		ar := &ActionResponse{RedirectTo: "/codes"}
 		ar.Perform(w, r)
 	} else {
-		ar := serveValidationError(user, err)
+		ar := &ActionResponse{RedirectTo: "/users/signup"}
+		c.AddNotice(session, err.Error())
+		session.Save(r, w)
 		ar.Perform(w, r)
 	}
 }

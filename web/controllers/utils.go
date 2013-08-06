@@ -35,12 +35,13 @@ func (ar *ActionResponse) Perform(w http.ResponseWriter, r *http.Request) {
 			err error
 		)
 
-		if ar.Layout {
-			t, e := template.ParseFiles("views/layouts/base.html", ar.Render)
+		if ar.NoLayout {
+			t, e := template.ParseFiles(ar.Render)
 			templ = t
 			err = e
+
 		} else {
-			t, e := template.ParseFiles(ar.Render)
+			t, e := template.ParseFiles("views/layouts/base.html", ar.Render)
 			templ = t
 			err = e
 		}
