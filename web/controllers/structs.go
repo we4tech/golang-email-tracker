@@ -25,10 +25,18 @@ type DataContext struct {
 }
 
 type ActionResponse struct {
-	RedirectTo string
-	Render     string
+	RedirectTo  string
+	Render      string
 	Context    *DataContext
-	RenderText string
-	Code       int
-	Notice	 string
+	RenderText  string
+	Code        int
+	Notice	    string
+	Layout      bool
+	ContentType string
+}
+
+type ApiErrorResponse struct {
+	Error bool
+	Message string
+	Type string
 }

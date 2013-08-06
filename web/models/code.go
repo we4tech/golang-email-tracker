@@ -7,6 +7,7 @@ import (
 	"appengine/datastore"
 	"net/http"
 	"fmt"
+	"encoding/json"
 )
 
 type Header struct {
@@ -124,6 +125,11 @@ func (c *Code) Save(ctx appengine.Context) (bool, error, error) {
 	} else {
 		return false, validationErr, nil
 	}
+}
+
+func (c Code) AsJson() string {
+	d, _ := json.Marshal(c)
+	return string(d)
 }
 
 func PopulateCode(r *http.Request, postReq bool) *Code {

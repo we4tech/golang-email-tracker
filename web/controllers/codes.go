@@ -22,7 +22,8 @@ func (c *AppController) CodesRoot(w http.ResponseWriter, r *http.Request, sessio
 		}
 	} else {
 		return &ActionResponse{
-			Render: "views/codes/index.html",
+			Layout: false,
+			Render: "views/codes/angular_index.html",
 			Context: &DataContext{
 				LoggedIn: true,
 				CurrentUser: c.GetCurrentUser(session),

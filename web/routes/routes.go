@@ -26,7 +26,9 @@ func init() {
 	http.HandleFunc("/codes/create", app.Authenticated(app.CreateCode))
 	http.HandleFunc("/codes/destroy", app.Authenticated(app.DestroyCode))
 	http.HandleFunc("/codes/start-tracking", app.Authenticated(app.StartTracking))
+	http.HandleFunc("/api/codes", app.Authenticated(app.ApiCode))
 	http.HandleFunc("/codes/track", app.TrackCode)
+
 	http.HandleFunc("/", app.Root)
 
 	// Map static files

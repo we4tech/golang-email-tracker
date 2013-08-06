@@ -21,16 +21,34 @@ func (ar *ActionResponse) Perform(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
 		}
 
-		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		if ar.ContentType != "" {
+			w.Header().Add("Content-Type", ar.ContentType)
+		} else {
+			w.Header().Add("Content-Type", "text/plain; charset=utf-8")
+		}
+
 		fmt.Fprintf(w, ar.RenderText)
 
 	} else if ar.Render != "" {
+		var (
+			templ *template.Template
+			err error
+		)
 
-		t, e := template.ParseFiles("views/layouts/base.html", ar.Render)
-		if e != nil {
-			fmt.Fprintln(w, e.Error())
+		if ar.Layout {
+			t, e := template.ParseFiles("views/layouts/base.html", ar.Render)
+			templ = t
+			err = e
 		} else {
-			t.Execute(w, ar.Context)
+			t, e := template.ParseFiles(ar.Render)
+			templ = t
+			err = e
+		}
+
+		if err != nil {
+			fmt.Fprintln(w, err.Error())
+		} else {
+			templ.Execute(w, ar.Context)
 		}
 
 	}
@@ -57,3 +75,5 @@ func (c *AppController) Authenticated(handler func (w http.ResponseWriter, r *ht
 		}
 	}
 }
+
+
